@@ -1,0 +1,47 @@
+</div>
+
+<script src="<spring:url value='/resource/js/jquery-2.1.4.min.js' />"></script>
+
+<script src="<spring:url value='/resource/js/bootstrap.min.js' />"></script>
+
+<!-- Scripts -->
+
+<script>
+
+    $('#flash-overlay-modal').modal();
+
+    $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
+    
+    
+    <script type="text/javascript">
+
+    function del() {  
+
+        if(window.confirm('Are you sure to delete！')){
+
+            //alert("confirm");
+
+            return true;
+
+         }else{
+
+            //alert("cancel");
+
+            return false;
+
+        }
+
+     }//del end
+
+
+
+    </script>
+
+</script>
+
+
+
+
+</body>
+
+</html>
