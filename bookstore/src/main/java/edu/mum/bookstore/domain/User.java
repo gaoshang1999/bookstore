@@ -1,9 +1,17 @@
 package edu.mum.bookstore.domain;
 
+import java.util.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity 
 public class User {
@@ -28,6 +36,26 @@ public class User {
 	
 	//0- admin, 1-user;
 	private int role = 1;
+	
+	
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created", nullable = true)
+    private Date created;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated", nullable = true)
+    private Date updated;
+
+    @PrePersist
+    protected void onCreate() {
+    	updated = created = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+    	
+    	updated = new Date();
+    }
 
 	public int getId() {
 		return id;
@@ -104,6 +132,9 @@ public class User {
 	public String getRoleDescription() {
 		return role==0?"admin":"user";
 	}
+
+ 
+
 	
  
 }

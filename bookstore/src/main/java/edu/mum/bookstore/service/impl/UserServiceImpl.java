@@ -3,6 +3,8 @@ package edu.mum.bookstore.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,7 +47,7 @@ public class UserServiceImpl implements UserService{
 
 	public List<User> getAll() {
 		// TODO Auto-generated method stub
-		return (List<User>) userRepository.findAll();
+		return (List<User>) userRepository.findAll(new Sort(Direction.DESC, "updated"));
 	}
 
 	public List<User> query(String q) {

@@ -1,5 +1,6 @@
 package edu.mum.bookstore.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class UserController {
  	
  	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
 	public String save(@PathVariable Integer id, @ModelAttribute User user, Model model) {
+ 		
  		userService.save(user);
  		   
  		return "redirect:/user/";
