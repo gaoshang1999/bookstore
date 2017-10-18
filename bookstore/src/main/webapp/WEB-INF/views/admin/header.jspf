@@ -75,7 +75,7 @@
 
             </button>
 
-            <a class="navbar-brand" href="{{ url('index') }}">BookStore</a>
+            <a class="navbar-brand" href="<spring:url value='/' />">BookStore</a>
 
         </div>
 
