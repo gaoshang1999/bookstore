@@ -51,11 +51,11 @@
 
           <th>Role</th>
 
-          <th>address</th>
+          <th>Address</th>
 
-          <th>zipcode</th>
+          <th>Zipcode</th>
 
-          <th>phone</th>
+          <th>Phone</th>
 
           <th>Edit</th>
 

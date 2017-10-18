@@ -13,6 +13,8 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity 
 public class User {
 
@@ -20,18 +22,25 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
  	private int id;
 	
+	@NotEmpty
 	private String username;
 	
+	@NotEmpty	
 	private String firstName;
-	
+
+	@NotEmpty
 	private String lastName;
 	
+	@NotEmpty
 	private String password;
 	
+	@NotEmpty
 	private String address;
 	
+	@NotEmpty
 	private String zipcode;
 	
+	@NotEmpty
 	private String phone;
 	
 	//0- admin, 1-user;
@@ -133,8 +142,11 @@ public class User {
 		return role==0?"admin":"user";
 	}
 
- 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", password=" + password + ", address=" + address + ", zipcode=" + zipcode + ", phone=" + phone
+				+ ", role=" + role + ", created=" + created + ", updated=" + updated + "]";
+	}
 
-	
- 
 }

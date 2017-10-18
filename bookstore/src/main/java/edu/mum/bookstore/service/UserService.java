@@ -21,4 +21,6 @@ public interface UserService {
 	public List<User> getAll();
 	
 	public List<User> query(String q);
+	
+	public User findByUsername(String username);	
 }

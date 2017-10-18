@@ -19,6 +19,7 @@
       <div class="col-sm-9">
 
         <form:input type="input" class="form-control" path="username" placeholder="username" value="${user.username}"/>
+        <form:input type="hidden" class="form-control" path="password"  value="${user.password}"/>
 
       </div>
 
