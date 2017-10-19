@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,9 +21,15 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired 
 	UserRepository userRepository;
+
+	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	public User save(User user) {
 		// TODO Auto-generated method stub
+		if(user.getPassword().length() < 30) {
+			String encodedPassword = passwordEncoder.encode(user.getPassword());
+			user.setPassword(encodedPassword);
+		}
 		return userRepository.save(user);
 	}
 
@@ -55,6 +63,8 @@ public class UserServiceImpl implements UserService{
 		return userRepository.queryByUsername(q);
 	}
 
-
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 
 }

@@ -17,5 +17,7 @@ public interface UserRepository extends  PagingAndSortingRepository<User, Intege
 {
 	@Query(value = "SELECT * FROM user u WHERE u.username    LIKE CONCAT('%',?1,'%')  ", nativeQuery = true)
 	public List<User> queryByUsername(String q);
+	
+	public User findByUsername(String username);
 }
 
