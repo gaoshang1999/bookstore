@@ -1,5 +1,6 @@
 package edu.mum.bookstore.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -30,8 +32,21 @@ public class IndexController {
 	private UserService userService;
 	
  	@RequestMapping(value="/")
-	public String listEmployees(Model model) {  
- 		return  "redirect:/user";
+	public String index(Model model, Authentication authentication) {  
+ 		if(null == authentication) {
+ 			return  "redirect:/home";
+ 		}
+ 		
+ 		System.out.println(authentication.getAuthorities());
+ 		Collection<? extends GrantedAuthority> roles = authentication.getAuthorities();
+ 		for(GrantedAuthority gr: roles) {
+ 			if( gr.getAuthority().equals("ROLE_ADMIN")) { 		
+ 	 			return  "redirect:/user";
+ 	 		}
+ 		}
+ 		 
+ 		return  "redirect:/home";
+ 		  		
 	}
  	
  	

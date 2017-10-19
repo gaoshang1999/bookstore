@@ -111,11 +111,7 @@
 					<li class="">
 						<a href="<spring:url value='/login' />"><i class="fa fa-sign-in"></i> Login </a>
 					</li>
-				</security:authorize>
-                   
-
-                
- 
+				</security:authorize>                   
 
             </ul>
 
