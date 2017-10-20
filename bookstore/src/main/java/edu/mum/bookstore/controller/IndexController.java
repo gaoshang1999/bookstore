@@ -79,10 +79,7 @@ public class IndexController {
 	
 	
  	@RequestMapping("/register")
-	public String getRegister(Model model) {
- 		User user = new User();
- 		model.addAttribute("user", user);
-  
+	public String getRegister(@ModelAttribute User user, Model model) {  
  		return "user/register";
 	}
  	

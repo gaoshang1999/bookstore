@@ -18,24 +18,44 @@
     function del() {  
 
         if(window.confirm('Are you sure to delete！')){
-
             //alert("confirm");
-
             return true;
-
          }else{
-
             //alert("cancel");
-
             return false;
-
         }
-
      }//del end
 
 
 
     </script>
+    
+    <script type="text/javascript">
+
+    jQuery(function($) {
+
+
+
+	    $(".nav-list li a").each(function(){    
+	    	
+	     var reg=new RegExp("^"+$(this).attr("href"));  
+
+		 if(reg.test(window.location) )    
+         { 
+
+        	 $(this).parents("li").siblings().removeClass("active");
+
+        	 $(this).parents("li").addClass("active");
+
+         }
+
+        });
+
+        
+
+	 });
+
+</script>	
 
 </script>
 

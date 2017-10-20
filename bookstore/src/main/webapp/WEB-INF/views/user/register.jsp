@@ -97,7 +97,7 @@
                             </div>
                         </form:form>
                         <div class="modal-footer">
-                        	<a href="<spring:url value="/login" />" class="text-center">Login</a>
+                        	<a href="<spring:url value="/login" />" class="text-center">Login</a> 
                         </div>
 					</div>
 				</div>
