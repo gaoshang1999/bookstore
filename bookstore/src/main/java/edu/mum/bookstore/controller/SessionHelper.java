@@ -33,4 +33,14 @@ public class SessionHelper {
 		}
 		return u;
 	}
+	
+	public User reloadLoginUser() {
+		User u = (User)session.getAttribute(USER_KEY);
+		if(null != u) {
+			u = userService.findOne(u.getId()) ;
+			session.setAttribute(USER_KEY, u);
+			u = (User)session.getAttribute(USER_KEY);
+		}
+		return u;
+	}
 }
