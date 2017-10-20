@@ -33,16 +33,13 @@
     <script type="text/javascript">
 
     jQuery(function($) {
-
-
-
-	    $(".nav-list li a").each(function(){    
+    	
+	    $(".navbar-nav li a").each(function(){    
 	    	
-	     var reg=new RegExp("^"+$(this).attr("href"));  
-
-		 if(reg.test(window.location) )    
-         { 
-
+	     var reg= $(this).attr("href");  
+	     
+		 if( window.location.toString().indexOf(reg) > 0 )   
+         {    
         	 $(this).parents("li").siblings().removeClass("active");
 
         	 $(this).parents("li").addClass("active");
