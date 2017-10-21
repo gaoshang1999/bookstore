@@ -96,7 +96,7 @@ public class HomeController {
  		userService.save(user);
  		sessionHelper.reloadLoginUser();
  		
- 		return  "redirect:/profile/changePassword?sucess";
+ 		return  "redirect:/profile/changePassword?success";
 	}
  	
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
