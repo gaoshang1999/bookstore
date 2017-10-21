@@ -8,13 +8,16 @@
 
    <%@ include file="../common/errors.jspf" %>
 
-  <h2 class="page-header">Edit Book </h2>
+  <h2 class="page-header"><spring:message code="product.top.comment"/> </h2> 
+  Language : <a href="?language=en_US">English</a>|<a href="?language=nl_NL">Duch</a>
+  <br>
 
   <form:form class="form-horizontal"  modelAttribute="book"  role="form" method="post" action="/bookstore/book/save/${book.id} ">
 
+     <form:errors path="*" cssStyle="color:red"/>
       <div class="form-group">
 
-      <label for="title" class="col-sm-2 control-label"><span style="color: red">*</span>Title</label>
+      <label for="title" class="col-sm-2 control-label"><span style="color: red">*</span><spring:message code="product.title"/></label>
 
       <div class="col-sm-9">
 
@@ -26,7 +29,7 @@
 
     <div class="form-group">
 
-      <label for="description" class="col-sm-2 control-label"><span style="color: red">*</span>Description</label>
+      <label for="description" class="col-sm-2 control-label"><span style="color: red">*</span><spring:message code="product.description"/></label>
 
       <div class="col-sm-9">
 
@@ -39,7 +42,7 @@
     
     <div class="form-group">
 
-      <label for="price" class="col-sm-2 control-label"><span style="color: red">*</span>Price</label>
+      <label for="price" class="col-sm-2 control-label"><span style="color: red">*</span><spring:message code="product.price"/></label>
 
       <div class="col-sm-9">
 
@@ -51,7 +54,7 @@
     
     <div class="form-group">
 
-      <label for="Category" class="col-sm-2 control-label"><span style="color: red">*</span>Category</label>
+      <label for="Category" class="col-sm-2 control-label"><span style="color: red">*</span><spring:message code="product.category"/></label>
 
       <div class="col-sm-9">
       

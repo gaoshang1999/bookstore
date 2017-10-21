@@ -3,10 +3,13 @@ package edu.mum.bookstore.controller;
 import java.io.File;
 
 import javax.servlet.ServletContext;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,8 +51,12 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
-	public String save(@PathVariable Integer id, @ModelAttribute("book") Book book, Model model) {
+	public String save(@PathVariable Integer id,@Valid @ModelAttribute("book") Book book,BindingResult result, Model model) {
 
+		if(result.hasErrors())
+		{
+			return "book/edit";
+		}
 		/*MultipartFile bookImage = book.getBookImage();
 		System.out.println("Book Title:");
 		System.out.println(book.getTitle());

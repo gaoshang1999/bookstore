@@ -8,13 +8,14 @@
 
    <%@ include file="../common/errors.jspf" %>
 
-  <h2 class="page-header">Edit Category </h2>
-
+  <h2 class="page-header"></span><spring:message code="category.top.comment" /></h2>
+Language : <a href="?language=en_US">English</a>|<a href="?language=nl_NL">Duch</a>
   <form:form class="form-horizontal" modelAttribute="category"  role="form" method="post" action="/bookstore/category/save/${category.id} ">
 
+   <form:errors path="*" cssStyle="color:red"/>
       <div class="form-group">
 
-      <label for="name" class="col-sm-2 control-label"><span style="color: red">*</span>Name</label>
+      <label for="name" class="col-sm-2 control-label"><span style="color: red">*</span><spring:message code="category.name" text="default text" /></label>
 
       <div class="col-sm-9">
 
@@ -26,7 +27,7 @@
 
     <div class="form-group">
 
-      <label for="description" class="col-sm-2 control-label"><span style="color: red">*</span>Description</label>
+      <label for="description" class="col-sm-2 control-label"><span style="color: red">*</span><spring:message code="category.description" text="default text" /></label>
 
       <div class="col-sm-9">
 

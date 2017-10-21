@@ -2,9 +2,12 @@ package edu.mum.bookstore.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -96,8 +99,13 @@ public class CategoryController {
 	}
  	
  	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
-	public String save(@PathVariable Integer id, @ModelAttribute Category category, Model model) {
+	public String save(@PathVariable Integer id,@Valid @ModelAttribute Category category,BindingResult result, Model model) {
  		
+ 		if(result.hasErrors())
+ 		{
+ 			
+ 			return "category/edit";
+ 		}
  		categoryService.save(category);
  		   
  		return "redirect:/category/";
