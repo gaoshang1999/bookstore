@@ -45,16 +45,18 @@ public class OrderController {
 	}
 
 	@RequestMapping("/neworder")
-	public String makeOrder(@RequestParam long orderedBooksID[], Model model, HttpSession session) {
+	public String makeOrder(@RequestParam int orderedBooksID[], Model model, HttpSession session) {
 
-		List<Book> orderedBooks = bookService.getBooksById(orderedBooksID);
+		List<Book> orderedBooks = new ArrayList<>();
+		for (int orderedBookId : orderedBooksID)
+			orderedBooks.add(bookService.findOne(orderedBookId));
 		User user = (User) session.getAttribute("user");
 
 		List<OrderItem> orderItems = new ArrayList<>();
 
 		for (Book book : orderedBooks) {
 			orderItems.add(new OrderItem(book));
-			//set quantity
+			// set quantity
 		}
 
 		Order order = new Order(user, orderItems);
@@ -63,11 +65,11 @@ public class OrderController {
 		NumberFormat formatter = new DecimalFormat("000000");
 		String orderNo = dateFormatForOrderNumber.format(new Date()) + "NBR" + formatter.format(orderService.count());
 		order.setOrderNo(orderNo);
-		
+
 		order = orderService.makeOrder(order);
-		
+
 		model.addAttribute("order", order);
-		
+
 		return "redirect:/order/" + orderNo;
 	}
 

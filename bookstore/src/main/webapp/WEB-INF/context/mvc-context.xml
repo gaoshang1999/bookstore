@@ -17,10 +17,66 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	<bean id= "messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-   		<property name="basename" value="messages"/> 
-	</bean>
+	
 	
 	<mvc:resources  location="/resources/"  mapping="/resource/**"/>
+ 	
+	
+	
+	
+	
+	
+	
+	
+	
+	<bean id= "messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+   		<property name="basename" value="messages"/> 
+    	<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+	
+	
+	
+	<bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  <property name="maxUploadSize" value="10240000"/>
+	<!--property name="restrictFileTypes" value="pdf"/--> 
+	</bean>
+	
+<!-- 
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/>
+
+ -->
+	<!-- Used to handle Cookie or Session locale resolvers AUTOMATICALLY -->
+	
+	<mvc:interceptors>
+ 		<bean class= "org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="language"/>
+	 	</bean>	 	
+ 	</mvc:interceptors>
+     <!-- 	name="paramName" value="language	this is the parameter that the interceptor looks for -->	
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en_US"/>
+	</bean>
+
+ 
+ <!-- 	
+bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+    <property name="defaultLocale" value="en"/>
+</bean
+	
+ -->
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
  
  </beans>

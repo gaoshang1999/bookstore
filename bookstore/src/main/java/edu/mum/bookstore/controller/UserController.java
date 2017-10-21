@@ -1,6 +1,5 @@
 package edu.mum.bookstore.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +24,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	SessionHelper sessionHelper;
+	
  	@RequestMapping()
 	public String list(Model model) {
  		List<User> userList = userService.getAll();
  		model.addAttribute("list", userList);
-  
+ 		System.out.println(sessionHelper.getLoginUser());
  		return "user/list";
 	}
  	
@@ -37,7 +39,7 @@ public class UserController {
 	public String getNew(Model model) {
  		User user = new User();
  		model.addAttribute("user", user);
-  
+ 		
  		return "user/edit";
 	}
  	

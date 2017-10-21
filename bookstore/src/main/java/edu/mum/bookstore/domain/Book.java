@@ -1,26 +1,67 @@
 package edu.mum.bookstore.domain;
 
-import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+
 
 @Entity
-public class Book implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-
+public class Book {
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	@NotEmpty(message="Book title can not be empty!")
 	private String title;
+	@Size(min=50,max=2000,message="Book description can not be less than 50 characters!")
 	private String description;
-	private String price;
+	@NotNull
+	private double price;
+	
+	private String imagePath;
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	/*@Transient
+    private  MultipartFile bookImage;	
+    
+	
+
+	public MultipartFile getBookImage() {
+		return bookImage;
+	}
+
+	public void setBookImage(MultipartFile bookImage) {
+		this.bookImage = bookImage;
+	}*/
+    @NotNull
+	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
+	@JoinColumn(name="categoryId")
+    
+	private Category category;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;
@@ -38,20 +79,21 @@ public class Book implements Serializable {
 		this.description = description;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public long getId() {
-		return id;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
+	
 
 }

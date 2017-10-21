@@ -31,10 +31,10 @@ public class CartController {
 	}
 
 	@RequestMapping("/add/{bookID}")
-	public @ResponseBody Cart addBookToCart(@PathVariable long bookID, Model model, HttpSession session) {
+	public @ResponseBody Cart addBookToCart(@PathVariable int bookID, Model model, HttpSession session) {
 
 		Cart CartToUpdate = (Cart) model.asMap().get("cart");
-		CartToUpdate.addBookToCart(bookService.getBookById(bookID));
+		CartToUpdate.addBookToCart(bookService.findOne(bookID));
 		session.setAttribute("cart", CartToUpdate);
 		// model.addAttribute("cart", CartToUpdate);
 
