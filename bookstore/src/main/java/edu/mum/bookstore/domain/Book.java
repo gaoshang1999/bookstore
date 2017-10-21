@@ -10,9 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -21,16 +24,15 @@ import org.springframework.web.multipart.MultipartFile;
 public class Book {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	
+	@NotEmpty(message="Book title can not be empty!")
 	private String title;
+	@Size(min=50,max=2000,message="Book description can not be less than 50 characters!")
 	private String description;
+	@NotNull
 	private double price;
-
-	/*@Transient
-    private  MultipartFile bookImage;	
-    
-	private String imagePath;
 	
+	private String imagePath;
+
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -39,6 +41,11 @@ public class Book {
 		this.imagePath = imagePath;
 	}
 
+	/*@Transient
+    private  MultipartFile bookImage;	
+    
+	
+
 	public MultipartFile getBookImage() {
 		return bookImage;
 	}
@@ -46,9 +53,10 @@ public class Book {
 	public void setBookImage(MultipartFile bookImage) {
 		this.bookImage = bookImage;
 	}*/
-
+    @NotNull
 	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
 	@JoinColumn(name="categoryId")
+    
 	private Category category;
 
 	public int getId() {

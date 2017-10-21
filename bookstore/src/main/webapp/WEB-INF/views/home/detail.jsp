@@ -8,9 +8,17 @@
         <div class="col-lg-3">
           <h1 class="my-4">Book Store</h1>
           <div class="list-group">
-            <a href="#" class="list-group-item active">Category 1</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
+            
+         
+          <c:forEach items="${categoryList}" var="category">
+          <div class="list-group">
+            <a href="/bookstore/home/${category.name}" class="list-group-item">${category.name}</a>
+           
+          </div>
+          </c:forEach>
+         
+          
+
           </div>
         </div>
         <!-- /.col-lg-3 -->
@@ -18,11 +26,11 @@
         <div class="col-lg-9">
 
           <div class="card mt-4">
-            <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+            <img class="card-img-top"  src="<spring:url value='/resource/${book.imagePath} '/>" alt="">
             <div class="card-body">
-              <h3 class="card-title">Product Name</h3>
-              <h4>$24.99</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+              <h3 class="card-title">${book.title}</h3>
+              <h4>$${book.price}</h4>
+              <p class="card-text">${book.description}</p>
      
               <hr>
               <a href="#" class="btn btn-success">Buy</a>
