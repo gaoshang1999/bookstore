@@ -11,5 +11,5 @@ public interface BookService {
 	public Book findOne(int id);
 	public Book save(Book book);
 	public void delete(Book book);
-	public List<Book> findBooksByCategory( String name);
+	public List<Book> findBooksById( Integer id);
 }

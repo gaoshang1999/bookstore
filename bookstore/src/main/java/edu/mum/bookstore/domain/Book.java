@@ -41,7 +41,7 @@ public class Book {
 		this.imagePath = imagePath;
 	}
 
-	/*@Transient
+	@Transient
     private  MultipartFile bookImage;	
     
 	
@@ -52,7 +52,7 @@ public class Book {
 
 	public void setBookImage(MultipartFile bookImage) {
 		this.bookImage = bookImage;
-	}*/
+	}
     @NotNull
 	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
 	@JoinColumn(name="categoryId")

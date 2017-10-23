@@ -63,11 +63,11 @@ public class HomeController {
 	}
 	
 	
- 	@RequestMapping(value="/home/{category}",method=RequestMethod.GET)
-	public String indexByCategory(@PathVariable("category") String category,Model model) {  
+ 	@RequestMapping(value="/home/{id}",method=RequestMethod.GET)
+	public String indexByCategory(@PathVariable("id") Integer id,Model model) {  
  		
  		model.addAttribute("categoryList", categoryService.findAll());
- 		model.addAttribute("bookList",bookService.findBooksByCategory(category));
+ 		model.addAttribute("bookList",bookService.findBooksById(id));
  	 	
  		return   "home/index";
 	}

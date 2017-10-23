@@ -29,8 +29,8 @@
 
 
     </script>
-    
-    <script type="text/javascript">
+
+<script type="text/javascript">
 
     jQuery(function($) {
 
@@ -55,7 +55,7 @@
 
 	 });
 
-</script>	
+</script>
 
 </script>
 
