@@ -2,8 +2,6 @@ package edu.mum.bookstore.service;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
-
 import edu.mum.bookstore.domain.Book;
 
 public interface BookService {
