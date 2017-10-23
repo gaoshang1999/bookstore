@@ -2,7 +2,6 @@ package edu.mum.bookstore.domain;
 
 import java.util.Date;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -62,7 +61,6 @@ public class User {
 
     @PreUpdate
     protected void onUpdate() {
-    	
     	updated = new Date();
     }
 

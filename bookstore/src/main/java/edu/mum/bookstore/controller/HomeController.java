@@ -128,9 +128,19 @@ public class HomeController {
  		userService.save(user);
  		sessionHelper.reloadLoginUser();
  		
- 		return  "redirect:/profile/changePassword?sucess";
+ 		return  "redirect:/profile/changePassword?success";
 	}
  	
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
  
+	
+ 	@RequestMapping("/about")
+	public String about(Model model) {  
+ 		return  "home/about";
+	}
+ 	
+ 	@RequestMapping("/admin/about")
+	public String admin_about(Model model) {  
+ 		return  "admin/about";
+	}
 }

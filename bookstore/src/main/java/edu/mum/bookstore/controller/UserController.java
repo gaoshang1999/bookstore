@@ -1,6 +1,5 @@
 package edu.mum.bookstore.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +45,14 @@ public class UserController {
  	
  	@RequestMapping("/edit/{id}")
 	public String getEdit(@PathVariable Integer id, Model model) {
+ 		User user = userService.findOne(id);
+ 		model.addAttribute("user", user);
+  
+ 		return "user/edit";
+	}
+ 	
+ 	@RequestMapping("/view/{id}")
+	public String getView(@PathVariable Integer id, Model model) {
  		User user = userService.findOne(id);
  		model.addAttribute("user", user);
   
