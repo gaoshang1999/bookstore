@@ -133,4 +133,14 @@ public class HomeController {
  	
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
  
+	
+ 	@RequestMapping("/about")
+	public String about(Model model) {  
+ 		return  "home/about";
+	}
+ 	
+ 	@RequestMapping("/admin/about")
+	public String admin_about(Model model) {  
+ 		return  "admin/about";
+	}
 }

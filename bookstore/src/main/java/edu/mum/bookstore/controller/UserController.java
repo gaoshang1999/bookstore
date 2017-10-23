@@ -52,6 +52,14 @@ public class UserController {
  		return "user/edit";
 	}
  	
+ 	@RequestMapping("/view/{id}")
+	public String getView(@PathVariable Integer id, Model model) {
+ 		User user = userService.findOne(id);
+ 		model.addAttribute("user", user);
+  
+ 		return "user/edit";
+	}
+ 	
  	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
 	public String save(@PathVariable Integer id, @ModelAttribute User user, Model model) {
  		

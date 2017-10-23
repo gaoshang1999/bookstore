@@ -8,7 +8,7 @@
 
    <%@ include file="../common/errors.jspf" %>
 
-  <h2 class="page-header">Edit User </h2>
+  <h2 class="page-header">View User </h2>
 
   <form:form class="form-horizontal" modelAttribute="user"  role="form" method="post" action="/bookstore/user/save/${user.id} ">
 
@@ -18,7 +18,7 @@
 
       <div class="col-sm-9">
 
-        <form:input type="input" class="form-control" path="username" placeholder="username" value="${user.username}"/>
+        <form:input type="input" class="form-control" path="username" placeholder="username" value="${user.username}" readonly='true'/>
         <form:input type="hidden" class="form-control" path="password"  value="${user.password}"/>
 
       </div>
@@ -31,7 +31,7 @@
 
       <div class="col-sm-9">
 
-        <form:input type="input" class="form-control" path="lastName" placeholder="lastName" value="${user.lastName}"/>
+        <form:input type="input" class="form-control" path="lastName" placeholder="lastName" value="${user.lastName}" readonly='true'/>
 
       </div>
 
@@ -43,7 +43,7 @@
 
       <div class="col-sm-9">
 
-        <form:input type="input" class="form-control" path="firstName" placeholder="firstName" value="${user.firstName}"/>
+        <form:input type="input" class="form-control" path="firstName" placeholder="firstName" value="${user.firstName}" readonly='true'/>
 
       </div>
 
@@ -57,7 +57,7 @@
 
       <div class="col-sm-9">
 
-        <form:input type="input" class="form-control" path="address" placeholder="address" value="${user.address}"/>
+        <form:input type="input" class="form-control" path="address" placeholder="address" value="${user.address}" readonly='true'/>
 
       </div>
 
@@ -69,7 +69,7 @@
 
       <div class="col-sm-9">
 
-        <form:input type="number" class="form-control" path="zipcode" placeholder="zipcode" value="${user.zipcode}"/>
+        <form:input type="number" class="form-control" path="zipcode" placeholder="zipcode" value="${user.zipcode}" readonly='true'/>
 
       </div>
 
@@ -82,7 +82,7 @@
 
       <div class="col-sm-9">
 
-        <form:input type="phone" class="form-control" path="phone" placeholder="phone" value="${user.phone}"/>
+        <form:input type="phone" class="form-control" path="phone" placeholder="phone" value="${user.phone}" readonly='true'/>
 
       </div>
 
@@ -94,7 +94,8 @@
 
       <div class="col-sm-offset-2 col-sm-10">
 
-        <button type="submit" class="btn btn-primary">Save</button> <button type="button" class="btn btn-primary" onclick="javascript :history.back(-1)">Back</button>
+<!--         <button type="submit" class="btn btn-primary">Save</button>  -->
+        <button type="button" class="btn btn-primary" onclick="javascript :history.back(-1)">Back</button>
 
       </div>
 
