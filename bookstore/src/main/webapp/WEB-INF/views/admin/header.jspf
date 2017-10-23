@@ -76,7 +76,7 @@
 
             </button>
 
-            <a class="navbar-brand" href="<spring:url value='/' />">BookStore</a>
+            <a class="navbar-brand" href="<spring:url value='/home' />">BookStore</a>
 
         </div>
 
