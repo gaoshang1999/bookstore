@@ -21,8 +21,14 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepository.save(order);
 	}
 
+	@Override
 	public List<Order> listOrders() {
 		return (List<Order>) orderRepository.findAll();
+	}
+
+	@Override
+	public List<Order> listOrdersOfUser(long userId) {
+		return (List<Order>) orderRepository.importOrderOfUser(userId);
 	}
 
 	@Override
@@ -31,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order importOrderByOrderNumber(String orderNumber) {		
+	public Order importOrderByOrderNumber(String orderNumber) {
 		return orderRepository.importOrderByOrderNumber(orderNumber);
 	}
 
