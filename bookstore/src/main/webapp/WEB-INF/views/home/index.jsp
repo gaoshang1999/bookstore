@@ -7,7 +7,7 @@
 
 		<div class="col-lg-3">
 
-			<h1 class="my-4">Category</h1>
+			<h3 class="my-4"><spring:message code="home.Category" text="Category" /></h3>
 
 
 			<div class="list-group">
