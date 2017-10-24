@@ -8,6 +8,8 @@ public interface OrderService {
 
 	public Order makeOrder(Order order);
 
+	public List<Order> listOrdersOfUser(long userId);
+
 	public List<Order> listOrders();
 
 	public long count();

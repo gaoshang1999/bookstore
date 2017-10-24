@@ -27,7 +27,6 @@ import edu.mum.bookstore.service.OrderItemService;
 import edu.mum.bookstore.service.OrderService;
 
 @Controller
-@RequestMapping("/order")
 public class OrderController {
 
 	@Autowired
@@ -39,17 +38,27 @@ public class OrderController {
 	@Autowired
 	SessionHelper sessionHelper;
 
-	@RequestMapping
+	@RequestMapping("/order")
 	public String listAllOrders(Model model, HttpSession session) {
 
-		List<Order> orders = (List<Order>) orderService.listOrders();
+		List<Order> orders = (List<Order>) orderService.listOrdersOfUser(sessionHelper.getLoginUser().getId());
 		model.addAttribute("orders", orders);
 		model.addAttribute("numberOfOrders", (orders == null) ? 0 : orders.size());
 
 		return "order/orderslist";
 	}
 
-	@RequestMapping("/neworder")
+	@RequestMapping("/orders")
+	public String listAllOrdersOfUsers(Model model, HttpSession session) {
+
+		List<Order> orders = (List<Order>) orderService.listOrders();
+		model.addAttribute("orders", orders);
+		model.addAttribute("numberOfOrders", (orders == null) ? 0 : orders.size());
+
+		return "order/allorders";
+	}
+
+	@RequestMapping("/order/neworder")
 	public String makeOrder(@ModelAttribute("orderItemList") OrderItemList orderItemList, Model model,
 			HttpSession session) {
 
@@ -79,7 +88,7 @@ public class OrderController {
 		return "redirect:/order/" + orderNo;
 	}
 
-	@RequestMapping("/{orderno}")
+	@RequestMapping("/order/{orderno}")
 	public String showOrderDetails(@PathVariable("orderno") String orderNo, Model model) {
 
 		Order order = orderService.importOrderByOrderNumber(orderNo);
