@@ -11,4 +11,7 @@ public interface OrderService {
 	public List<Order> listOrders();
 
 	public long count();
+
+	public Order importOrderByOrderNumber(String orderNumber);
+
 }

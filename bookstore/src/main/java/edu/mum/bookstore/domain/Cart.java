@@ -12,8 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cart implements Serializable {
@@ -27,6 +27,10 @@ public class Cart implements Serializable {
 
 	}
 
+	public Cart(User user) {
+		this.user = user;
+	}
+
 	public Cart(User user, List<Book> books) {
 		this.user = user;
 		this.books = books;
@@ -36,11 +40,11 @@ public class Cart implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID")
 	private User user;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable
 	private List<Book> books;
 
@@ -52,6 +56,17 @@ public class Cart implements Serializable {
 	}
 
 	public List<Book> removeBookFromCartById(long bookId) {
+		if(books !=null)
+		for (int i = 0; i < books.size(); i++) {
+			if (books.get(i).getId() == bookId) {
+				books.remove(i);
+			}
+		}
+		return books;
+	}
+
+	public List<Book> removeBookFromCartByIdList(long bookId) {
+		if(books !=null)
 		for (int i = 0; i < books.size(); i++) {
 			if (books.get(i).getId() == bookId) {
 				books.remove(i);
@@ -72,16 +87,28 @@ public class Cart implements Serializable {
 		this.id = id;
 	}
 
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public List<Book> getBook() {
-		return books;
+	public int getBookCount() {
+		return books == null ? 0 : books.size();
 	}
 
-	public void setBook(List<Book> book) {
-		this.books = book;
+	public int getTotalCost() {
+		int totalCost = 0;
+		if (books != null)
+			for (Book book : books)
+				totalCost += book.getPrice();
+		return totalCost;
 	}
 
 }

@@ -10,7 +10,7 @@ import edu.mum.bookstore.domain.Order;
 @Repository
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
-	// @Query(value = "SELECT * FROM CART WHERE USER_ID = ?1 ", nativeQuery = true)
-	//public Cart getByOrderNo(String orderNo);
+	@Query(value = "SELECT * FROM ORDERS WHERE orderNo = ?1 ", nativeQuery = true)
+	public Order importOrderByOrderNumber(String orderNumber);
 	
 }
