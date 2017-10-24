@@ -11,7 +11,7 @@ import edu.mum.bookstore.domain.Book;
 
 @Repository
 public interface BookRepository extends CrudRepository<Book, Integer>{
-	@Query("select b from Book b where b.category.name=:name")
-	public List<Book> findBooksByCategory(@Param("name") String name);
+	@Query("select b from Book b where b.category.id=:id")
+	public List<Book> findBooksById(@Param("id") Integer id);
 
 }

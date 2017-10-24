@@ -57,27 +57,31 @@ public class BookController {
 		{
 			return "book/edit";
 		}
-		/*MultipartFile bookImage = book.getBookImage();
+		MultipartFile bookImage = book.getBookImage();
 		System.out.println("Book Title:");
 		System.out.println(book.getTitle());
 
 		String rootDirectory = servletContext.getRealPath("/");
 
 		System.out.println(book.getBookImage());
+		String path = "/images/" + book.getTitle() + ".png";
 		if (bookImage != null && !bookImage.isEmpty()) {
 			try {
-				String imagePath = rootDirectory + "\\resources\\images\\" + book.getId() + ".png";
+				String imagePath = rootDirectory + "/resources/" + path;
 				bookImage.transferTo(new File(imagePath));
-				book.setImagePath(imagePath);
+				book.setImagePath(path);
 			} catch (Exception e) {
 				throw new RuntimeException("Failed to save employee image.", e);
 			}
 		}
-*/
+
 		Category category = categoryService.findOne(book.getCategory().getId());
 		book.setCategory(category);
+		
 		// ra.addFlashAttribute("book",book);
 		Book b = bookService.save(book);
+		String imgPath="/images/"+b.getId()+".png";
+		book.setImagePath(imgPath);
 
 		return "redirect:/book";
 
@@ -108,9 +112,9 @@ public class BookController {
 		return "bookDetails";
 	}
 	
-	@RequestMapping(value="/books/{category}")
-	public String getBookListByCategory(@PathVariable("category") String category,Model model) {
-		model.addAttribute("bookList", bookService.findBooksByCategory(category));
+	@RequestMapping(value="/books/{id}")
+	public String getBookListByCategory(@PathVariable("id") Integer id,Model model) {
+		model.addAttribute("bookList", bookService.findBooksById(id));
 		return "book/list";
 
 	}

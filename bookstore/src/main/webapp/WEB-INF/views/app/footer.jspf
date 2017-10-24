@@ -1,16 +1,21 @@
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white"> &copy; 2017 Copyright MUM-WAA-Group1</p>
-      </div>
-      <!-- /.container -->
-    </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="<spring:url value='/resource/vendor/jquery/jquery.min.js' />"></script>
-    <script src="<spring:url value='/resource/vendor/popper/popper.min.js' />"></script>
-    <script src="<spring:url value='/resource/vendor/bootstrap/js/bootstrap.min.js' />"></script>
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+	<div class="container">
+		<p class="m-0 text-center text-white">&copy; 2017 Copyright
+			MUM-WAA-Group1</p>
+	</div>
+	<!-- /.container -->
+</footer>
 
-  </body>
+<!-- Bootstrap core JavaScript -->
+<script
+	src="<spring:url value='/resource/vendor/jquery/jquery.min.js' />"></script>
+<script
+	src="<spring:url value='/resource/vendor/popper/popper.min.js' />"></script>
+<script
+	src="<spring:url value='/resource/vendor/bootstrap/js/bootstrap.min.js' />"></script>
+
+</body>
 
 </html>
