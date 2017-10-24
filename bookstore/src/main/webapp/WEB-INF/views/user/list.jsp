@@ -1,27 +1,25 @@
 
 
-<%@ include file="../admin/header.jspf"%>
+<%@ include file="../admin/header.jspf" %>
 
 
 
 <div class="col-sm-12 main">
 
-	<%@ include file="../common/errors.jspf"%>
+  <%@ include file="../common/errors.jspf" %>
 
-	<h2 class="sub-header">
-		User List <a class="btn btn-primary pull-right"
-			href="<spring:url value="/user/new" />" tabindex="4">New </a>
+  <h2 class="sub-header">User List
 
+   <a class="btn btn-primary pull-right" href="<spring:url value="/user/new" />" tabindex="4">New </a>
 
+     
 
-		<form class="search_form pull-right form-inline" role="form"
-			method="get" action="<spring:url value="/user/query" />">
+   <form class="search_form pull-right form-inline" role="form" method="get" action="<spring:url value="/user/query" />" >    
 
-			<button class="btn btn-primary pull-right" type="submit" tabindex="3">Search</button>
+    <button class="btn btn-primary pull-right" type="submit" tabindex="3">Search</button>
 
-			<input class="form-control pull-right" type="text" placeholder=""
-				name="q" value="" tabindex="2" />
-			<!--  
+    <input class="form-control pull-right" type="text" placeholder="" name ="q" value="" tabindex="2"/>  
+<!--  
     <select class="form-control pull-right" id="field" name="field" tabindex="1"> <?php $field = isset($field) ? $field : ""; ?>
 
       <option value="name" {{ $field==='name' ? 'selected' : '' }}>username</option>
@@ -31,89 +29,83 @@
 
     </select>  
 -->
-		</form>
+  </form>
 
-	</h2>
+  </h2>
 
-	<div class="table-responsive">
+  <div class="table-responsive">
 
-		<table class="table table-striped">
+    <table class="table table-striped">
 
-			<thead>
+      <thead>
 
-				<tr>
+        <tr>
 
-					<th>#</th>
+          <th>#</th>
 
-					<th>Username</th>
+          <th>Username</th>
 
-					<th>First Name</th>
+          <th>First Name</th>
 
-					<th>Last Name</th>
+          <th>Last Name</th>
 
-					<th>Role</th>
+          <th>Role</th>
 
-					<th>Address</th>
+          <th>Address</th>
 
-					<th>Zipcode</th>
+          <th>Zipcode</th>
 
-					<th>Phone</th>
+          <th>Phone</th>
 
-					<th>Edit</th>
+          <th>Edit</th>
 
-					<th>Delete</th>
+		  <th>Delete</th>
 
-				</tr>
+        </tr>
 
-			</thead>
+      </thead>
 
-			<tbody>
+      <tbody>
 
-				<c:forEach items="${list}" var="user">
+        <c:forEach items="${list}" var="user">
 
-					<tr>
+        <tr>
 
-						<td>${user.id}</td>
+          <td>${user.id}</td>
 
-						<td><a href=""></a> ${user.username}</td>
+          <td><a href=""></a> ${user.username} </td>
 
-						<td>${user.lastName}</td>
+          <td>${user.lastName}</td>
 
-						<td>${user.firstName}</td>
+          <td>${user.firstName}</td>
 
-						<td>${user.getRoleDescription()}</td>
+          <td>${user.getRoleDescription()}</td>
 
-						<td>${user.address}</td>
+          <td>${user.address}</td>
 
-						<td>${user.zipcode}</td>
+          <td>${user.zipcode}</td>
 
-						<td>${user.phone}</td>
+          <td>${user.phone}</td>
 
-						<td><a href="<spring:url value="/user/edit/${user.id}" />"
-							class="btn btn-primary"> Edit </a></td>
+          <td><a href="<spring:url value="/user/edit/${user.id}" />" class="btn btn-primary"> Edit    </a>    </td>
+	     
+	     <td><form action="<spring:url value="/user/delete/${user.id}" />" method="post"> <button type="submit" onclick="return del();" class="btn btn-primary" >Delete</button> </form>  </td>
+ 
 
-						<td><form
-								action="<spring:url value="/user/delete/${user.id}" />"
-								method="post">
-								<button type="submit" onclick="return del();"
-									class="btn btn-primary">Delete</button>
-							</form></td>
+        </tr>
 
+        </c:forEach>
 
-					</tr>
+      </tbody>
 
-				</c:forEach>
-
-			</tbody>
-
-		</table>
+    </table>
 
 
 
-	</div>
+  </div>
 
 </div>
 
 
 
-<%@ include file="../admin/footer.jspf"%>
+<%@ include file="../admin/footer.jspf" %>
