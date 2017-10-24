@@ -44,7 +44,7 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order")
 	private List<OrderItem> orderItems;
 
 	private String orderNo;
@@ -55,14 +55,14 @@ public class Order implements Serializable {
 	private String address;
 	private String zipcode;
 	private String phone;
+	
+	
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID", nullable = false)
 	private User user;
 
 	public void addOrderItem(OrderItem orderItem) {
-
 		if (orderItems == null) {
 			orderItems = new ArrayList<>();
 		}

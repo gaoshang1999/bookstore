@@ -13,6 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity 
 public class User {
@@ -146,5 +148,14 @@ public class User {
 				+ ", password=" + password + ", address=" + address + ", zipcode=" + zipcode + ", phone=" + phone
 				+ ", role=" + role + ", created=" + created + ", updated=" + updated + "]";
 	}
+	
+	public void encodeMyPassword() {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		if(this.getPassword().length() < 30) {
+			String encodedPassword = passwordEncoder.encode(this.getPassword());
+			this.setPassword(encodedPassword);
+		}
+	}
+
 
 }

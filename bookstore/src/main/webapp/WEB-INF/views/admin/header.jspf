@@ -23,7 +23,7 @@
 <meta name="keywords" content="your, awesome, keywords, here" />
 
 
-<meta name="author" content="YQ" />
+<meta name="author" content="gs" />
 
 
 
@@ -75,12 +75,15 @@
 
 				</button>
 
-				<a class="navbar-brand" href="<spring:url value='/' />">BookStore</a>
+
+				<a class="navbar-brand" href="<spring:url value='/home' />">BookStore</a>
+
 
 			</div>
 
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
+
 
 
 				<ul class="nav navbar-nav">
@@ -91,16 +94,17 @@
 
 					<li><a href="<spring:url value='/book' />">Book</a></li>
 
-					<li><a href="<spring:url value='/order' />">Order</a></li>
+					<li><a href="<spring:url value='/orders' />">Order</a></li>
 
+					<li><a href="<spring:url value='/admin/about' />">About</a></li>
 				</ul>
 
 
 				<ul class="nav navbar-nav navbar-right">
 
 					<security:authorize access="isAuthenticated()">
-						<li class=""><a href="#"><i class="fa fa-sign-in"></i>
-							<security:authentication property="principal.Username" /></a></li>
+						<li class=""><a href="#"><i class="fa fa-sign-in"></i> <security:authentication
+									property="principal.Username" /></a></li>
 						<li class=""><a href="<spring:url value='/logout' />"><i
 								class="fa fa-sign-in"></i> Logout</a></li>
 					</security:authorize>
@@ -117,9 +121,5 @@
 		</div>
 
 	</nav>
-
-
-
-
 
 	<div class="container">

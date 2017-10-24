@@ -21,13 +21,24 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepository.save(order);
 	}
 
+	@Override
 	public List<Order> listOrders() {
 		return (List<Order>) orderRepository.findAll();
 	}
 
 	@Override
+	public List<Order> listOrdersOfUser(long userId) {
+		return (List<Order>) orderRepository.importOrderOfUser(userId);
+	}
+
+	@Override
 	public long count() {
 		return orderRepository.count();
+	}
+
+	@Override
+	public Order importOrderByOrderNumber(String orderNumber) {
+		return orderRepository.importOrderByOrderNumber(orderNumber);
 	}
 
 }
