@@ -23,7 +23,7 @@
 <meta name="keywords" content="your, awesome, keywords, here" />
 
 
-<meta name="author" content="YQ" />
+<meta name="author" content="gs" />
 
 
 
@@ -75,7 +75,7 @@
 
 				</button>
 
-				<a class="navbar-brand" href="<spring:url value='/' />">BookStore</a>
+				<a class="navbar-brand" href="<spring:url value='/home' />">BookStore</a>
 
 			</div>
 
@@ -93,6 +93,7 @@
 
 					<li><a href="<spring:url value='/order' />">Order</a></li>
 
+ 					<li><a href="<spring:url value='/admin/about' />">About</a></li> 
 				</ul>
 
 

@@ -24,7 +24,7 @@
 	<mvc:resources location="/resources/" mapping="/resource/**" />
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="messages" />
+		<property name="basenames" value="messages, errorMessages"/>  
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 

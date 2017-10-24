@@ -1,8 +1,8 @@
 </div>
-<%-- <script src="<spring:url value='/resource/js/jquery-2.1.4.min.js' />"></script>
+<script src="<spring:url value='/resource/js/jquery-2.1.4.min.js' />"></script>
 <script src="<spring:url value='/resource/js/bootstrap.min.js' />"></script>
 
-<!-- Scripts -->
+
 
 <script>
 
@@ -52,7 +52,7 @@
 
 </script>
 
-<!-- </script> --> --%>
+
 
 <footer class="py-5 bg-dark">
 	<div class="container">
