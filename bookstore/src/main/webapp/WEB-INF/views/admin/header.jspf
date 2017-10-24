@@ -93,6 +93,7 @@
 
 					<li><a href="<spring:url value='/order' />">Order</a></li>
 
+ 					<li><a href="<spring:url value='/admin/about' />">About</a></li> 
 				</ul>
 
 
