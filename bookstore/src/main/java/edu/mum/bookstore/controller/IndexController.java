@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -99,14 +100,22 @@ public class IndexController {
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public String register(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model,
 			HttpSession session) {
+		User u = userService.findByUsername(user.getUsername());
+		if(null != u) {
+			bindingResult.addError(new ObjectError("username", "username is occupied, please use a new one."));
+		}
+		
 		if (bindingResult.hasErrors()) {
 			return "user/register";
 		}
 		// save product here
-		userService.save(user);
+		
+		
+// 		userService.save(user);		
+		user.encodeMyPassword();
 
 		Cart cart = cartService.createOrUpdateCart(new Cart(user));
-		session.setAttribute("cart", cart);
+		session.setAttribute("cart", cart );
 
 		return "redirect:/register?success";
 	}
