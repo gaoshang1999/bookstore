@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -136,10 +137,12 @@
 	<!-- Scripts -->
 
 	<script>
-		$('#flash-overlay-modal').modal();
 
-		$('div.alert').not('.alert-danger').delay(3000).slideUp(300);
-	</script>
+    $('#flash-overlay-modal').modal();
+
+    $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
+
+</script>
 
 
 

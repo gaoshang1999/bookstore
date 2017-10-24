@@ -9,10 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -37,7 +38,7 @@ public class Book {
 		this.imagePath = imagePath;
 	}
 
-	/*@Transient
+	@Transient
     private  MultipartFile bookImage;	
     
 	
@@ -48,7 +49,7 @@ public class Book {
 
 	public void setBookImage(MultipartFile bookImage) {
 		this.bookImage = bookImage;
-	}*/
+	}
     @NotNull
 	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
 	@JoinColumn(name="categoryId")

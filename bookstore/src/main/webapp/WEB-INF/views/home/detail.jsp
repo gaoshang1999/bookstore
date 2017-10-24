@@ -1,8 +1,10 @@
 <%@ include file="../app/header.jspf"%>
+
 <script type="text/javascript"
 	src='<spring:url value="/resource/js/addbooktocart.js"></spring:url>'></script>
 <script type="text/javascript"
 	src='<spring:url value="/resource/js/removebookfromcart.js"></spring:url>'></script>
+
 <!-- Page Content -->
 <div class="container">
 
@@ -15,8 +17,8 @@
 
 				<c:forEach items="${categoryList}" var="category">
 					<div class="list-group">
-						<a href="/bookstore/home/${category.name}" class="list-group-item">${category.name}</a>
 
+						<a href="/bookstore/home/${category.id}" class="list-group-item">${category.name}</a>
 					</div>
 				</c:forEach>
 
@@ -37,8 +39,10 @@
 					<p class="card-text">${book.description}</p>
 
 					<hr>
+
 					<div id="${book.id}" class="btn btn-success addBookToCart">Add
 						to cart</div>
+
 				</div>
 			</div>
 			<!-- /.card -->
