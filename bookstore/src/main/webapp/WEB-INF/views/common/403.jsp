@@ -2,92 +2,63 @@
 
 <html>
 
-    <head>
+<head>
 
-        <title>403 - Forbidden.</title>
-
-
-
-        <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+<title>403 - Forbidden.</title>
 
 
 
-        <style>
-
-            html, body {
-
-                height: 100%;
-
-            }
+<link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet"
+	type="text/css">
 
 
 
-            body {
+<style>
+html, body {
+	height: 100%;
+}
 
-                margin: 0;
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	color: #B0BEC5;
+	display: table;
+	font-weight: 100;
+	font-family: 'Lato';
+}
 
-                padding: 0;
+.container {
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
 
-                width: 100%;
+.content {
+	text-align: center;
+	display: inline-block;
+}
 
-                color: #B0BEC5;
+.title {
+	font-size: 72px;
+	margin-bottom: 40px;
+}
+</style>
 
-                display: table;
+</head>
 
-                font-weight: 100;
+<body>
 
-                font-family: 'Lato';
+	<div class="container">
 
-            }
+		<div class="content">
 
+			<div class="title">403 - Forbidden.</div>
 
+		</div>
 
-            .container {
+	</div>
 
-                text-align: center;
-
-                display: table-cell;
-
-                vertical-align: middle;
-
-            }
-
-
-
-            .content {
-
-                text-align: center;
-
-                display: inline-block;
-
-            }
-
-
-
-            .title {
-
-                font-size: 72px;
-
-                margin-bottom: 40px;
-
-            }
-
-        </style>
-
-    </head>
-
-    <body>
-
-        <div class="container">
-
-            <div class="content">
-
-                <div class="title">403 - Forbidden.</div>
-
-            </div>
-
-        </div>
-
-    </body>
+</body>
 
 </html>
