@@ -13,7 +13,7 @@
 </head>
 <body>
 	<section>
-		<div class="jumbotron">
+		<div class="">
 			<div class="container text-center">
 				<h1>Login !!</h1>
 			</div>
