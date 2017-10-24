@@ -1,48 +1,52 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
 
-    <meta charset="utf-8">
+<meta charset="utf-8">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
-    <title>Online Book store</title>
-
-
-    <meta name="keywords" content="your, awesome, keywords, here"/>
-
-
-    <meta name="author" content="YQ"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
-    <meta name="description" content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei."/>
+<title>Online Book store</title>
+
+
+<meta name="keywords" content="your, awesome, keywords, here" />
+
+
+<meta name="author" content="YQ" />
 
 
 
-	<!-- Bootstrap core CSS -->
+<meta name="description"
+	content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei." />
 
-    <link href="<spring:url value='/resource/css/bootstrap.min.css' />" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
 
-    <link href="<spring:url value='/resource/css/dashboard.css' /> " rel="stylesheet">
+<!-- Bootstrap core CSS -->
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<link href="<spring:url value='/resource/css/bootstrap.min.css' />"
+	rel="stylesheet">
 
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!-- Custom styles for this template -->
 
-    <!--[if lt IE 9]>
+<link href="<spring:url value='/resource/css/dashboard.css' /> "
+	rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+<!--[if lt IE 9]>
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 
@@ -56,90 +60,83 @@
 
 <body>
 
-<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
 
-    <div class="container">
+		<div class="container">
 
-        <div class="navbar-header">
+			<div class="navbar-header">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 
-                    data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle Navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 
-                <span class="sr-only">Toggle Navigation</span>
+				</button>
 
-                <span class="icon-bar"></span>
+				<a class="navbar-brand" href="{{ url('index') }}">BookStore</a>
 
-                <span class="icon-bar"></span>
+			</div>
 
-                <span class="icon-bar"></span>
-
-            </button>
-
-            <a class="navbar-brand" href="{{ url('index') }}">BookStore</a>
-
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
 
 
-                <ul class="nav navbar-nav">
+				<ul class="nav navbar-nav">
 
-                    <li><a href="<spring:url value='/user' />">User</a></li>
+					<li><a href="<spring:url value='/user' />">User</a></li>
 
-                    <li><a href="<spring:url value='/category' />">Category</a></li>
-                    
-                     <li><a href="<spring:url value='/book' />">Book</a></li>
+					<li><a href="<spring:url value='/category' />">Category</a></li>
 
-                    <li><a href="<spring:url value='/order' />">Order</a></li>
+					<li><a href="<spring:url value='/book' />">Book</a></li>
 
-                </ul>
-              
+					<li><a href="<spring:url value='/order' />">Order</a></li>
 
-            <ul class="nav navbar-nav navbar-right">
+				</ul>
 
-                
 
-                    <li class="{{ (Request::is('auth/login') ? 'active' : '') }}">
-
-                        <a href="{{ url('auth/login') }}"><i class="fa fa-sign-in"></i> Login</a>
-
-                    </li>
-
-                    <li class="{{ (Request::is('auth/register') ? 'active' : '') }}">
-
-                        <a href="{{ url('auth/register') }}">Register</a>
-
-                    </li>
-
-                
- 
-
-            </ul>
-
-        </div>
-
-    </div>
-
-</nav>
+				<ul class="nav navbar-nav navbar-right">
 
 
 
- 
+					<li class="{{ (Request::is('auth/login') ? 'active' : '') }}">
 
-<div class="container">
+						<a href="{{ url('auth/login') }}"><i class="fa fa-sign-in"></i>
+							Login</a>
 
- 
+					</li>
 
-</div>
+					<li class="{{ (Request::is('auth/register') ? 'active' : '') }}">
 
-<script src="<spring:url value='/resource/js/jquery-2.1.4.min.js' />"></script>
+						<a href="{{ url('auth/register') }}">Register</a>
 
-<script src="<spring:url value='/resource/js/bootstrap.min.js' />"></script>
+					</li>
 
-<!-- Scripts -->
 
-<script>
+
+
+				</ul>
+
+			</div>
+
+		</div>
+
+	</nav>
+
+
+
+
+
+	<div class="container"></div>
+
+	<script src="<spring:url value='/resource/js/jquery-2.1.4.min.js' />"></script>
+
+	<script src="<spring:url value='/resource/js/bootstrap.min.js' />"></script>
+
+	<!-- Scripts -->
+
+	<script>
 
     $('#flash-overlay-modal').modal();
 

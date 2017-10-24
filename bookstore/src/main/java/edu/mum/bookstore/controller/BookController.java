@@ -1,6 +1,7 @@
 package edu.mum.bookstore.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -117,6 +119,21 @@ public class BookController {
 		model.addAttribute("bookList", bookService.findBooksById(id));
 		return "book/list";
 
+	}
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	public String delete(@PathVariable Integer id) {
+		bookService.delete(id);
+ 		
+ 		return "redirect:/book";
+	}
+ 	
+	@RequestMapping("/query")
+	public String query(@RequestParam("q") String q, Model model) {
+ 		List<Book> bookList = bookService.queryByBookTitle(q);
+ 		model.addAttribute("bookList", bookList);
+  
+ 		return "book/list";
 	}
 
 }

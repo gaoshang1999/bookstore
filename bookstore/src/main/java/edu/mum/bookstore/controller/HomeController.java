@@ -79,6 +79,16 @@ public class HomeController {
  		return  "home/detail";
 	}
  	
+ 	@RequestMapping("home/query")
+	public String query(@RequestParam("q") String q, Model model) {
+ 		List<Book> bookList = bookService.queryByBookTitle(q);
+ 		model.addAttribute("bookList", bookList);
+ 		model.addAttribute("categoryList", categoryService.findAll());
+  
+ 		return "home/index";
+	}
+
+ 	
  	@RequestMapping("/profile")
 	public String profile(Model model) {  
  		User user = sessionHelper.getLoginUser();
