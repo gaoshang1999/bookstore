@@ -1,72 +1,109 @@
+
 <%@ include file="../admin/header.jspf" %>
+
 
 
 
 <div class="col-sm-10 col-sm-offset-1 main">
 
-   <%@ include file="../common/errors.jspf" %>
+	<%@ include file="../common/errors.jspf"%>
 
-  <h2 class="page-header"><spring:message code="product.top.comment"/> </h2> 
-  Language : <a href="?language=en_US">English</a>|<a href="?language=nl_NL">Duch</a>
-  <br>
+	<h2 class="page-header">
+		<spring:message code="product.top.comment" />
+	</h2>
+	Language : <a href="?language=en_US">English</a>|<a
+		href="?language=nl_NL">Duch</a> <br>
 
-  <form:form class="form-horizontal"  modelAttribute="book"  role="form" method="post" action="/bookstore/book/save/${book.id} ">
+	<form:form class="form-horizontal" modelAttribute="book" role="form"
+		method="post" action="/bookstore/book/save/${book.id}" enctype="multipart/form-data"  >
 
-     <form:errors path="*" cssStyle="color:red"/>
-      <div class="form-group">
+		<form:errors path="*" cssStyle="color:red" />
+		<div class="form-group">
 
-      <label for="title" class="col-sm-2 control-label"><span style="color: red">*</span><spring:message code="product.title"/></label>
+			<label for="title" class="col-sm-2 control-label"><span
+				style="color: red">*</span>
+			<spring:message code="product.title" /></label>
 
-      <div class="col-sm-9">
+			<div class="col-sm-9">
 
-        <form:input type="input" class="form-control" path="title" placeholder="title" value="${book.title}"/>
+				<form:input type="input" class="form-control" path="title"
+					placeholder="title" value="${book.title}" />
 
-      </div>
+			</div>
 
-    </div>
+		</div>
 
-    <div class="form-group">
+		<div class="form-group">
 
-      <label for="description" class="col-sm-2 control-label"><span style="color: red">*</span><spring:message code="product.description"/></label>
+			<label for="description" class="col-sm-2 control-label"><span
+				style="color: red">*</span>
+			<spring:message code="product.description" /></label>
 
-      <div class="col-sm-9">
+			<div class="col-sm-9">
 
-        <form:input type="input" class="form-control" path="description" placeholder="description" value="${book.description}"/>
+				<form:input type="input" class="form-control" path="description"
+					placeholder="description" value="${book.description}" />
 
-      </div>
+			</div>
 
-    </div>
-    
-    
-    <div class="form-group">
+		</div>
 
-      <label for="price" class="col-sm-2 control-label"><span style="color: red">*</span><spring:message code="product.price"/></label>
 
-      <div class="col-sm-9">
+		<div class="form-group">
 
-        <form:input type="input" class="form-control" path="price" placeholder="description" value="${book.price}"/>
+			<label for="price" class="col-sm-2 control-label"><span
+				style="color: red">*</span>
+			<spring:message code="product.price" /></label>
 
-      </div>
+			<div class="col-sm-9">
 
-    </div>
-    
-    <div class="form-group">
+				<form:input type="input" class="form-control" path="price"
+					placeholder="description" value="${book.price}" />
 
-      <label for="Category" class="col-sm-2 control-label"><span style="color: red">*</span><spring:message code="product.category"/></label>
+			</div>
 
-      <div class="col-sm-9">
-      
-      <form:select path="category.id" placeholder="category" class=" form-control">
-      <form:option value="0" label="Select Category" />
-      <form:options items="${categoryList}" itemValue="id" itemLabel="name"/>
-      
-      </form:select>
+		</div>
 
-      
-      </div>
+		<div class="form-group">
 
-    </div>
-    <%-- 
+			<label for="Category" class="col-sm-2 control-label"><span
+				style="color: red">*</span>
+			<spring:message code="product.category" /></label>
+
+			<div class="col-sm-9">
+
+				<form:select path="category.id" placeholder="category"
+					class=" form-control">
+					<form:option value="0" label="Select Category" />
+					<form:options items="${categoryList}" itemValue="id"
+						itemLabel="name" />
+
+				</form:select>
+
+
+			</div>
+
+		</div>
+		
+		
+		<div class="form-group">
+
+			<label for="Category" class="col-sm-2 control-label"><span
+				style="color: red">*</span>
+			<spring:message code="product.image" /></label>
+
+			<div class="col-sm-9">
+				<img class="card-img-top" 
+						src="<spring:url value='/resource/${book.imagePath} '/>" alt="">
+				<form:input type="hidden" path="imagePath" placeholder="bookImage" value="${book.bookImage}"/>
+
+				<form:input type="file" path="bookImage" placeholder="bookImage" value="${book.bookImage}"/>
+
+
+			</div>
+
+		</div>
+		<%-- 
      <div class="form-group">
 
       <label for="bookImage" class="col-sm-2 control-label"><span style="color: red">*</span>Book Image</label>
@@ -78,22 +115,24 @@
       </div>
 
     </div> --%>
-    
 
-    <div class="form-group">
 
-      <div class="col-sm-offset-2 col-sm-10">
+		<div class="form-group">
 
-        <button type="submit" class="btn btn-primary">Save</button> <button type="button" class="btn btn-primary" onclick="javascript :history.back(-1)">Back</button>
+			<div class="col-sm-offset-2 col-sm-10">
 
-      </div>
+				<button type="submit" class="btn btn-primary">Save</button>
+				<button type="button" class="btn btn-primary"
+					onclick="javascript :history.back(-1)">Back</button>
 
-    </div>
+			</div>
 
-  </form:form>
+		</div>
+
+	</form:form>
 
 </div>
 
 
 
-<%@ include file="../admin/footer.jspf" %>
+<%@ include file="../admin/footer.jspf"%>

@@ -8,11 +8,11 @@
 		<intercept-url pattern="/profile/**" access="isAuthenticated()" />
 		<form-login login-page="/login" username-parameter="username"
 			password-parameter="password" />
+
+			<csrf disabled="true"/>
 	</http>
 
 
-<!-- 	<beans:bean id="corsSource"
-		class="org.springframework.web.cors.UrlBasedCorsConfigurationSource"></beans:bean> -->
 	<authentication-manager>
 		<authentication-provider>
 			<password-encoder hash="bcrypt" />
@@ -23,9 +23,5 @@
 		</authentication-provider>
 
 	</authentication-manager>
-
-
-
-
 
 </beans:beans>

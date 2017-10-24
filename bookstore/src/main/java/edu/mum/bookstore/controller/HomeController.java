@@ -52,17 +52,15 @@ public class HomeController {
 		return "home/index";
 	}
 
-	@RequestMapping(value = "/home/{category}", method = RequestMethod.GET)
-	public String indexByCategory(@PathVariable("category") String category, Model model, HttpSession session) {
+	
+ 	@RequestMapping(value="/home/{id}",method=RequestMethod.GET)
+	public String indexByCategory(@PathVariable("id") Integer id,Model model) {  
+ 		
+ 		model.addAttribute("categoryList", categoryService.findAll());
+ 		model.addAttribute("bookList",bookService.findBooksById(id));
+ 	 	
+ 		return   "home/index";
 
-		model.addAttribute("categoryList", categoryService.findAll());
-		List<Book> booksOfChosenCategory = bookService.findBooksByCategory(category);
-		int sizeOfBookList = booksOfChosenCategory.size();
-		model.addAttribute("bookList", booksOfChosenCategory);
-		Collections.shuffle(booksOfChosenCategory);
-		session.setAttribute("otherBooks", booksOfChosenCategory.subList(0, (sizeOfBookList > 3) ? 4 : sizeOfBookList));
-
-		return "home/index";
 	}
 
 	@RequestMapping("/detail/{id}")
@@ -72,11 +70,23 @@ public class HomeController {
 		return "home/detail";
 	}
 
-	@RequestMapping("/profile")
-	public String profile(Model model) {
-		User user = sessionHelper.getLoginUser();
-		model.addAttribute("user", user);
-		return "profile/profile";
+ 	
+ 	@RequestMapping("home/query")
+	public String query(@RequestParam("q") String q, Model model) {
+ 		List<Book> bookList = bookService.queryByBookTitle(q);
+ 		model.addAttribute("bookList", bookList);
+ 		model.addAttribute("categoryList", categoryService.findAll());
+  
+ 		return "home/index";
+	}
+
+ 	
+ 	@RequestMapping("/profile")
+	public String profile(Model model) {  
+ 		User user = sessionHelper.getLoginUser();
+ 		model.addAttribute("user", user);
+ 		return  "profile/profile";
+
 	}
 
 	@RequestMapping("/profile/edit")
@@ -126,4 +136,15 @@ public class HomeController {
 
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+ 
+	
+ 	@RequestMapping("/about")
+	public String about(Model model) {  
+ 		return  "home/about";
+	}
+ 	
+ 	@RequestMapping("/admin/about")
+	public String admin_about(Model model) {  
+ 		return  "admin/about";
+	}
 }
