@@ -41,8 +41,8 @@ public class OrderItem implements Serializable {
 	private long id;
 	private long quantity;
 
-	/* @LazyCollection(LazyCollectionOption.FALSE) */
-	@ManyToOne(fetch = FetchType.LAZY)
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Order order;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -81,4 +81,9 @@ public class OrderItem implements Serializable {
 		this.quantity = quantity;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return book.getId() + " " + quantity;
+	}
 }

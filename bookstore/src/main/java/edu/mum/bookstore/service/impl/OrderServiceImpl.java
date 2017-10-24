@@ -30,4 +30,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepository.count();
 	}
 
+	@Override
+	public Order importOrderByOrderNumber(String orderNumber) {		
+		return orderRepository.importOrderByOrderNumber(orderNumber);
+	}
+
 }

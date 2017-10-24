@@ -8,8 +8,10 @@
 		<intercept-url pattern="/profile/**" access="isAuthenticated()" />
 		<form-login login-page="/login" username-parameter="username"
 			password-parameter="password" />
+
 			<csrf disabled="true"/>
 	</http>
+
 
 	<authentication-manager>
 		<authentication-provider>
@@ -21,7 +23,5 @@
 		</authentication-provider>
 
 	</authentication-manager>
-
-
 
 </beans:beans>
