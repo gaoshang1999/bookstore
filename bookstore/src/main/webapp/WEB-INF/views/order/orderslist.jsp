@@ -24,12 +24,7 @@
 								<table class="table shoping-cart-table">
 									<tbody>
 										<tr>
-											<td width="90">
-												<div class="cart-product-imitation">
-													<!-- <img class="card-img-top" src="http://placehold.it/80x120"
-													alt=""> -->
-												</div>
-											</td>
+											<td width="10"></td>
 											<td class="desc">
 												<h3>
 													<a href="#" class="text-navy">No: ${order.orderNo} |
@@ -46,8 +41,9 @@
 											</td>
 											<td>
 												<div class="btn pull-right">
-													<a href="<spring:url value='/order/${order.orderNo}' />" class="btn btn-primary btn-sm"><i
-														class="fa fa-info"></i> Details</a>
+													<a href="<spring:url value='/order/${order.orderNo}' />"
+														class="btn btn-primary btn-sm"><i class="fa fa-info"></i>
+														Details</a>
 												</div>
 											</td>
 										</tr>
@@ -67,7 +63,7 @@
 					</div>
 					<div class="ibox-content text-center">
 						<h3>
-							<i class="fa fa-phone"></i> +00 00 0000 00000
+							<i class="fa fa-phone"></i> +12 345 6789
 						</h3>
 						<span class="small"> Please contact with us if you have any
 							questions. We are available 24/7. </span>

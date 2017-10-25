@@ -52,19 +52,18 @@
 														</dl>
 
 														<div class="m-t-sm">
-															<a href="" class="text-muted"><i
-																class="fa fa fa-shopping-cart"></i> Checkout</a> | <a
-																id="${book.id}" href=""
+															<a id="${book.id}" href=""
 																class="text-muted removeBookFromCart"><i
 																class="fa fa-trash"></i> Remove item</a>
 														</div>
 													</td>
 
 													<td><h4 class="unitPrice">$${book.price}</h4></td>
-													<td width="65"><form:input type="text"
-															path="orderItems[${status.index}].quantity"
+													<td width="65"><form:errors
+															path="orderItems[0].quantity" /> <form:input
+															type="number" path="orderItems[${status.index}].quantity"
 															class="form-control quantities" placeholder="1"
-															name="quantity" value="1"></form:input></td>
+															name="quantity" value="1" min="1"></form:input></td>
 													<td></td>
 												</tr>
 											</tbody>
@@ -95,19 +94,12 @@
 					</div>
 					<div class="ibox-content">
 						<span> Total </span>
-						<!-- ${totalprice} -->
 						<h2 class="font-bold" id="totalCost">$${bookCartTotalCost}</h2>
 
 						<hr>
 						<span class="text-muted small"> *For United States, France
 							and Germany applicable sales tax will be applied </span>
-						<!-- <div class="m-t-sm">
-							<div class="btn-group">
-								<a href="#" class="btn btn-primary btn-sm"><i
-									class="fa fa-shopping-cart"></i> Checkout</a> <a href="home"
-									class="btn btn-white btn-sm"> Cancel</a>
-							</div>
-						</div> -->
+
 					</div>
 				</div>
 
