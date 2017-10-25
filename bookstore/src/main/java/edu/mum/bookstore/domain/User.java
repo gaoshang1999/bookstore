@@ -11,6 +11,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,9 +40,11 @@ public class User {
 	private String address;
 	
 	@NotEmpty
+	@Size(min=5, max=5)
 	private String zipcode;
 	
 	@NotEmpty
+	@Size(min=7, max=7)
 	private String phone;
 	
 	//0- admin, 1-user;
