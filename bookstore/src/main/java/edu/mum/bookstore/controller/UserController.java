@@ -2,9 +2,13 @@ package edu.mum.bookstore.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,12 +60,20 @@ public class UserController {
  		User user = userService.findOne(id);
  		model.addAttribute("user", user);
   
- 		return "user/edit";
+ 		return "user/view";
 	}
  	
  	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
-	public String save(@PathVariable Integer id, @ModelAttribute User user, Model model) {
- 		
+	public String save(@PathVariable Integer id,@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+		User u = userService.findByUsername(user.getUsername());
+		if(null != u && u.getId() != user.getId()) {
+			bindingResult.addError(new ObjectError("username", "username is occupied, please use a new one."));
+		}
+		
+		if (bindingResult.hasErrors()) {
+			return "user/edit";
+		}
+		
  		userService.save(user);
  		   
  		return "redirect:/user/";

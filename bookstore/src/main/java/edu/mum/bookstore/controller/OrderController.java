@@ -8,10 +8,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,7 +62,7 @@ public class OrderController {
 
 	@RequestMapping("/order/neworder")
 	public String makeOrder(@ModelAttribute("orderItemList") OrderItemList orderItemList, Model model,
-			HttpSession session) {
+			HttpSession session, BindingResult bindingResult) {
 
 		List<OrderItem> orderedItems = orderItemList.getOrderItems();
 		Cart CartToUpdate = (Cart) session.getAttribute("cart");
@@ -93,20 +95,15 @@ public class OrderController {
 
 		Order order = orderService.importOrderByOrderNumber(orderNo);
 		OrderItemList orderItemList = null;
-		List<Book> books = null;
-
-		if (order != null)
-			orderItemList = new OrderItemList(order.getOrderItems());
-
-		if (orderItemList != null)
-			books = orderItemList.getBooks();
 
 		model.addAttribute("order", order);
-		model.addAttribute("books", books);
-		model.addAttribute("totalprice", orderItemList.getTotalPrice());
 
-		if (books != null)
-			model.addAttribute("NumberOfbooks", books.size());
+		if (order != null) {
+			orderItemList = new OrderItemList(order.getOrderItems());
+			model.addAttribute("orderitemlist", order.getOrderItems());
+		}
+		if (orderItemList != null)
+			model.addAttribute("totalprice", orderItemList.getTotalPrice());
 
 		return "order/orderdetail";
 	}

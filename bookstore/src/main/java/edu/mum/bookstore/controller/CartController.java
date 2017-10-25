@@ -1,13 +1,19 @@
 package edu.mum.bookstore.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import edu.mum.bookstore.domain.Cart;
 import edu.mum.bookstore.domain.OrderItemList;
@@ -62,7 +68,7 @@ public class CartController {
 
 	@RequestMapping("/remove/{bookID}")
 	public @ResponseBody Cart removeBookFromCart(@PathVariable long bookID, Model model, HttpSession session) {
-		
+
 		Cart CartToUpdate = (Cart) session.getAttribute("cart");
 		if (CartToUpdate == null) {
 			CartToUpdate = cartService.createOrUpdateCart(new Cart(sessionHelper.getLoginUser()));
