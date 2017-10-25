@@ -1,9 +1,17 @@
 package edu.mum.bookstore.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderItemList {
+import javax.validation.Valid;
+
+public class OrderItemList implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	List<OrderItem> orderItems;
 
@@ -56,7 +64,7 @@ public class OrderItemList {
 
 		if (orderItems != null) {
 			for (OrderItem orderItem : orderItems)
-				totalPrice += orderItem.getBook().getPrice();
+				totalPrice += orderItem.getBook().getPrice() * orderItem.getQuantity();
 		}
 
 		return totalPrice;
