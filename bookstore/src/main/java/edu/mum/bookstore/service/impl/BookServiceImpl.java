@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.mum.bookstore.domain.Book;
+import edu.mum.bookstore.domain.User;
 import edu.mum.bookstore.repository.BookRepository;
 import edu.mum.bookstore.service.BookService;
 
@@ -57,5 +58,11 @@ public class BookServiceImpl implements BookService {
 	{
 		return (List<Book>) bookRepository.queryByBookTitle(q);
 		
+	}
+	
+
+	public Book findBookByTitle(String title)
+	{
+		return (Book) bookRepository.findBookByTitle(title);
 	}
 }

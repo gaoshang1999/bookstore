@@ -17,4 +17,7 @@ public interface BookRepository extends CrudRepository<Book, Integer>{
 	@Query(value = "SELECT * FROM Book b WHERE b.title    LIKE CONCAT('%',?1,'%')  ", nativeQuery = true)
 	public List<Book> queryByBookTitle(String q);
 	
+	@Query("select b from Book b where b.title=:title")
+	public Book findBookByTitle(@Param("title") String title);
+	
 }
