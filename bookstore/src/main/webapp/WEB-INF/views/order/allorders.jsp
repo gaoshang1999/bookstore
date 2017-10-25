@@ -3,7 +3,11 @@
 
 <div class="col-sm-12 main">
 	<%@ include file="../common/errors.jspf"%>
-	<h2 class="sub-header">Order List</h2>
+	<h2 class="sub-header">
+		Order List <i class="fa fa-language pull-right  small m-t-xs" aria-hidden="true"></i>
+		<span class="pull-right  small m-t-xs"><a href="?language=en_US">English</a>
+			| <a href="?language=fr_FR">French</a></span>
+	</h2>
 	<div class="table-responsive">
 		<div class="col-sm-12 main"></div>
 
@@ -16,12 +20,12 @@
 					<tr>
 						<th>&nbsp;</th>
 						<th>#</th>
-						<th>Number</th>
-						<th>Date</th>
-						<th>User Name</th>
-						<th>Shipping Address</th>
-						<th>ZipCode</th>
-						<th>Phone</th>
+						<th><spring:message code="allorder.number" /></th>
+						<th><spring:message code="allorder.date" /></th>
+						<th><spring:message code="allorder.username" /></th>
+						<th><spring:message code="allorder.shipping.address" /></th>
+						<th><spring:message code="order.zipcode" /></th>
+						<th><spring:message code="order.phone" /></th>
 					</tr>
 
 				</thead>
@@ -49,11 +53,11 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Title</th>
-												<th>Description</th>
-												<th>Category</th>
-												<th>Price</th>
-												<th>Quantity</th>
+												<th><spring:message code="allorder.title" /></th>
+												<th><spring:message code="description" /></th>
+												<th><spring:message code="orderlist.category" /></th>
+												<th><spring:message code="order.unitprice" /></th>
+												<th><spring:message code="order.quantity" /></th>
 											</tr>
 										</thead>
 										<tbody>

@@ -3,8 +3,11 @@
 
 <div class="container">
 	<div class="header">
+
 		<header class="jumbotron my-4">
-			<h1 class="display-4">Order History</h1>
+			<h1 class="display-4">
+				<spring:message code="order.history" />
+			</h1>
 		</header>
 	</div>
 	<div class="wrapper wrapper-content animated fadeInRight">
@@ -12,9 +15,12 @@
 			<div class="col-md-9">
 				<div class="ibox-title">
 					<span class="pull-right">(<strong>${numberOfOrders}</strong>)
-						orders
+						<spring:message code="order" />
 					</span>
-					<h5>Items in your cart</h5>
+					<h5>
+						<spring:message code="order.items" />
+						
+					</h5>
 				</div>
 				<c:forEach var="order" items="${orders}">
 					<div class="ibox">
@@ -31,11 +37,22 @@
 														${order.time} </a>
 												</h3>
 												<dl class="small m-b-none">
-													<dt>Shipping information</dt>
+													<dt>
+														<spring:message code="order.shippinginfo" />
+													</dt>
 													<dd>
-														<p>Address : ${order.address}</p>
-														<p>Zip Code : ${order.zipcode}</p>
-														<p>Phone : ${order.phone}</p>
+														<p>
+															<spring:message code="order.address" />
+															: ${order.address}
+														</p>
+														<p>
+															<spring:message code="order.zipcode" />
+															: ${order.zipcode}
+														</p>
+														<p>
+															<spring:message code="order.phone" />
+															: ${order.phone}
+														</p>
 													</dd>
 												</dl>
 											</td>
@@ -43,7 +60,7 @@
 												<div class="btn pull-right">
 													<a href="<spring:url value='/order/${order.orderNo}' />"
 														class="btn btn-primary btn-sm"><i class="fa fa-info"></i>
-														Details</a>
+														<spring:message code="details" /></a>
 												</div>
 											</td>
 										</tr>
@@ -59,21 +76,24 @@
 
 				<div class="ibox">
 					<div class="ibox-title">
-						<h5>Support</h5>
+						<h5>Support <i class="fa fa-language pull-right" aria-hidden="true"></i> <span
+							class="pull-right"><a href="?language=en_US">English</a> |
+							<a href="?language=fr_FR">French</a></span></h5>
 					</div>
 					<div class="ibox-content text-center">
 						<h3>
 							<i class="fa fa-phone"></i> +12 345 6789
 						</h3>
-						<span class="small"> Please contact with us if you have any
-							questions. We are available 24/7. </span>
+						<span class="small"> <spring:message code="cart.msg" /></span>
 					</div>
 				</div>
 
 				<div class="ibox">
 					<div class="ibox-content">
 
-						<p class="font-bold">Other products you may be interested</p>
+						<p class="font-bold">
+							<spring:message code="otherbooks.msg" />
+						</p>
 						<hr>
 						<c:forEach var="anotherbook" items="${otherBooks}">
 							<div>
