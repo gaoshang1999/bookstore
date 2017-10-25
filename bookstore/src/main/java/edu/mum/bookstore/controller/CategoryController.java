@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -100,7 +101,10 @@ public class CategoryController {
  	
  	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
 	public String save(@PathVariable Integer id,@Valid @ModelAttribute Category category,BindingResult result, Model model) {
- 		
+ 		Category cat=categoryService.findCategoryByName(category.getName());
+ 		if (cat!=null) {
+			result.addError(new ObjectError("Category already exists", "Category already exists, Please select another name"));
+		}
  		if(result.hasErrors())
  		{
  			
