@@ -1,5 +1,6 @@
 package edu.mum.bookstore.domain;
 
+import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,19 +16,22 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
-
-
 @Entity
-public class Book {
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+public class Book implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@NotEmpty(message="Book title can not be empty!")
+	@NotEmpty(message = "Book title can not be empty!")
 	private String title;
-	@Size(min=50,max=2000,message="Book description can not be less than 50 characters!")
+	@Size(min = 50, max = 2000, message = "Book description can not be less than 50 characters!")
 	private String description;
 	@NotNull
 	private double price;
-	
+
 	private String imagePath;
 
 	public String getImagePath() {
@@ -39,9 +43,7 @@ public class Book {
 	}
 
 	@Transient
-    private  MultipartFile bookImage;	
-    
-	
+	private MultipartFile bookImage;
 
 	public MultipartFile getBookImage() {
 		return bookImage;
@@ -50,10 +52,11 @@ public class Book {
 	public void setBookImage(MultipartFile bookImage) {
 		this.bookImage = bookImage;
 	}
-    @NotNull
-	@ManyToOne(cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
-	@JoinColumn(name="categoryId")
-    
+
+	@NotNull
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "categoryId")
+
 	private Category category;
 
 	public int getId() {
@@ -95,6 +98,5 @@ public class Book {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
 
 }
