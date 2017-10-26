@@ -58,7 +58,10 @@ public class CartController {
 		if (CartToUpdate == null) {
 			CartToUpdate = cartService.createOrUpdateCart(new Cart(sessionHelper.getLoginUser()));
 		}
-		CartToUpdate.addBookToCart(bookService.findOne(bookID));
+		if (!CartToUpdate.isBookInCartByBookId(bookID)) {
+			CartToUpdate.addBookToCart(bookService.findOne(bookID));
+			cartService.createOrUpdateCart(CartToUpdate);
+		}
 		session.setAttribute("cart", CartToUpdate);
 		session.setAttribute("bookCartCount", CartToUpdate.getBookCount());
 		session.setAttribute("bookCartTotalCost", CartToUpdate.getTotalCost());
@@ -73,7 +76,10 @@ public class CartController {
 		if (CartToUpdate == null) {
 			CartToUpdate = cartService.createOrUpdateCart(new Cart(sessionHelper.getLoginUser()));
 		}
+		
 		CartToUpdate.removeBookFromCartById(bookID);
+		cartService.createOrUpdateCart(CartToUpdate);
+
 		session.setAttribute("cart", CartToUpdate);
 		session.setAttribute("bookCartCount", CartToUpdate.getBookCount());
 		session.setAttribute("bookCartTotalCost", CartToUpdate.getTotalCost());

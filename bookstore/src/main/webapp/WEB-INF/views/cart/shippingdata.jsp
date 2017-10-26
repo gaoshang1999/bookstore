@@ -1,13 +1,6 @@
 <%@ include file="/WEB-INF/views/app/header.jspf"%>
 
 
-<script type="text/javascript"
-	src='<spring:url value="/resource/js/cart.js"></spring:url>'></script>
-<script type="text/javascript"
-	src='<spring:url value="/resource/js/removebookfromcart.js"></spring:url>'></script>
-
-
-
 
 <div class="container">
 	<div class="header">
@@ -32,74 +25,44 @@
 						</h5>
 
 					</div>
-					<c:if test="${books == null}">
-								<div class="lea">
-									<p>
-										Your cart is empty 
-									</p>
-								</div>
-							</c:if>
-					<form:form modelAttribute="orderItemList" action="order/neworder"
-						method="get">
+					<form:form modelAttribute="order"
+						action="/bookstore/order/${order.orderNo}" method="post">
 						<div class="ibox-content">
-							<c:forEach var="book" items="${books}" varStatus="status">
-								<div class="ibox-content">
-									<div class="table-responsive">
-										<table class="table shoping-cart-table">
-											<tbody>
-												<tr>
-													<td width="90">
-														<div class="img">
-															<img alt="${book.title}"
-																src="<spring:url value='/resource/${book.imagePath}'/>"
-																class="img-responsive">
-														</div>
-													</td>
-													<td class="desc">
-														<h3>
-															<a href="<spring:url value='/detail/${book.id}' />"
-																class="text-navy"> ${book.title} </a>
-														</h3>
-														<dl class="small m-b-none">
-															<dt>
-																<spring:message code="cart.description" />
-															</dt>
-															<dd>${book.description}</dd>
-														</dl>
-
-														<div class="m-t-sm">
-															<a id="${book.id}" href=""
-																class="text-muted removeBookFromCart"><i
-																class="fa fa-trash"></i> <spring:message
-																	code="cart.remove" /> </a>
-														</div>
-													</td>
-
-													<td><h4 class="unitPrice">$${book.price}</h4></td>
-													<td width="65"><form:errors
-															path="orderItems[0].quantity" /> <form:input
-															type="number" path="orderItems[${status.index}].quantity"
-															class="form-control quantities" placeholder="1"
-															name="quantity" value="1" min="1"></form:input></td>
-													<td></td>
-												</tr>
-											</tbody>
-										</table>
+							<h3>
+								<a href="<spring:url value='/order' />" class="text-navy">No:
+									${order.orderNo} | ${order.time} </a>
+							</h3>
+							<dl class="medium m-b-none">
+								<dt class="text ">
+									<spring:message code="order.shippinginfo" />
+								</dt>
+								<dd class="text lead">
+									<div>
+										<spring:message code="order.address" />
+										:
+										<form:input path="address" />
+										<form:errors class="alert alert-danger" path="address" />
 									</div>
-
-								</div>
-								<form:input type="text" hidden="true"
-									path="orderItems[${status.index}].book.id" value="${book.id}"></form:input>
-							</c:forEach>
+									<div>
+										<spring:message code="order.zipcode" />
+										:
+										<form:input path="zipcode" />
+										<form:errors class="alert alert-danger" path="zipcode" />
+									</div>
+									<div>
+										<spring:message code="order.phone" />
+										:
+										<form:input path="phone" />
+									</div>
+								</dd>
+							</dl>
+							</td>
 							<div class="ibox-content">
-								<button class="btn btn-primary pull-right ">
+								<button type="submit"
+									class="btn btn-primary pull-right decrementCart">
 									<i class="fa fa fa-shopping-cart "></i>
 									<spring:message code="cart.checkout" />
-								</button>
-								<a class="btn btn-white" href="home"> <i
-									class="fa fa-arrow-left"></i> <spring:message
-										code="cart.continue" />
-								</a>
+								</button>s
 							</div>
 						</div>
 					</form:form>

@@ -17,6 +17,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.bookstore.domain.Book;
 import edu.mum.bookstore.domain.Cart;
@@ -29,6 +32,7 @@ import edu.mum.bookstore.service.OrderItemService;
 import edu.mum.bookstore.service.OrderService;
 
 @Controller
+@SessionAttributes("order")
 public class OrderController {
 
 	@Autowired
@@ -62,7 +66,7 @@ public class OrderController {
 
 	@RequestMapping("/order/neworder")
 	public String makeOrder(@ModelAttribute("orderItemList") OrderItemList orderItemList, Model model,
-			HttpSession session, BindingResult bindingResult) {
+			HttpSession session, RedirectAttributes redirectAttribute) {
 
 		List<OrderItem> orderedItems = orderItemList.getOrderItems();
 		Cart CartToUpdate = (Cart) session.getAttribute("cart");
@@ -86,11 +90,37 @@ public class OrderController {
 		order = orderService.makeOrder(order);
 
 		session.setAttribute("cart", CartToUpdate);
+		session.setAttribute("bookCartCount", CartToUpdate.getBookCount());
+		model.addAttribute("order", order);
+
+		return "forward:/order/shippingdata";
+	}
+
+	@RequestMapping("/order/shippingdata")
+	public String insertShippingData(@ModelAttribute("order") Order order, Model model) {
+
+		model.addAttribute("order", (Order) model.asMap().get("order"));
+
+		return "cart/shippingdata";
+	}
+
+	@RequestMapping(value = "/order/{orderno}", method = RequestMethod.POST)
+	public String getShippingData(@ModelAttribute("order") @Valid Order order, BindingResult bindingResult,
+			@PathVariable("orderno") String orderNo, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "cart/shippingdata";
+		}
+		System.out.println("here");
+		Order oldOrder = orderService.importOrderByOrderNumber(orderNo);
+		System.out.println(order.getAddress());
+		order = oldOrder.updateShippingDataOrder(order);
+		orderService.makeOrder(order);
 
 		return "redirect:/order/" + orderNo;
 	}
 
-	@RequestMapping("/order/{orderno}")
+	@RequestMapping(value = "/order/{orderno}")
 	public String showOrderDetails(@PathVariable("orderno") String orderNo, Model model) {
 
 		Order order = orderService.importOrderByOrderNumber(orderNo);
