@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.query.Param;
 
 import edu.mum.bookstore.domain.Book;
+import edu.mum.bookstore.domain.User;
 
 public interface BookService {
 	public List<Book> findAllBooks();
@@ -15,4 +16,6 @@ public interface BookService {
 	public void delete(int id);
 	//public List<Book> queryByBookTitle(String q);
 	public List<Book> queryByBookTitle(String q);
+
+	public Book findBookByTitle(String title);
 }

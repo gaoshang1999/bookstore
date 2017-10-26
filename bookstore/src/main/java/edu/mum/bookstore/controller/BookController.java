@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,7 +55,10 @@ public class BookController {
 
 	@RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
 	public String save(@PathVariable Integer id,@Valid @ModelAttribute("book") Book book,BindingResult result, Model model) {
-
+		Book b1=bookService.findBookByTitle(book.getTitle());
+		if (b1!=null) {
+			result.addError(new ObjectError("Book already exists", "Book already exists, Please select another title"));
+		}
 		if(result.hasErrors())
 		{
 			return "book/edit";

@@ -58,8 +58,10 @@
           <th>Phone</th>
 
           <th>View</th>
+          
+          <th>Edit</th>
 
-<!-- 		  <th>Delete</th> -->
+ 		  <th>Delete</th>  
 
         </tr>
 
@@ -88,8 +90,10 @@
           <td>${user.phone}</td>
 
           <td><a href="<spring:url value="/user/view/${user.id}" />" class="btn btn-primary"> View    </a>    </td>
+          
+          <td><a href="<spring:url value="/user/edit/${user.id}" />" class="btn btn-primary"> Edit    </a>    </td>
 	     
-<%-- 	     <td><form action="<spring:url value="/user/delete/${user.id}" />" method="post"> <button type="submit" onclick="return del();" class="btn btn-primary" >Delete</button> </form>  </td> --%>
+	     <td><form action="<spring:url value="/user/delete/${user.id}" />" method="post"> <button type="submit" onclick="return del();" class="btn btn-primary" >Delete</button> </form>  </td> 
  
 
         </tr>
