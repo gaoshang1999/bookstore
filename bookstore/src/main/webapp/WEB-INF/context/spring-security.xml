@@ -8,7 +8,9 @@
 		<intercept-url pattern="/orders/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/category/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/book/**" access="hasRole('ROLE_ADMIN')" />
+
 		<intercept-url pattern="/order/**" access="isAuthenticated()" />
+
 		
 		<intercept-url pattern="/profile/**" access="isAuthenticated()" />
 		<form-login login-page="/login" username-parameter="username"

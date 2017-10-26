@@ -22,6 +22,13 @@
 						
 					</h5>
 				</div>
+					<c:if test="${orders == null}">
+								<div class="lea">
+									<p>
+										Empty 
+									</p>
+								</div>
+							</c:if>
 				<c:forEach var="order" items="${orders}">
 					<div class="ibox">
 

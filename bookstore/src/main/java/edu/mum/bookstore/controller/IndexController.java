@@ -80,15 +80,11 @@ public class IndexController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Cart currentCart = (Cart) request.getSession().getAttribute("cart");
+		
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-
-		if (currentCart != null) {
-			System.out.println("Cart saved");
-			cartService.createOrUpdateCart(currentCart);
-		}
+		
 		return "redirect:/login?logout";
 	}
 

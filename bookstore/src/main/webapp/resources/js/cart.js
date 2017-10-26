@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
 	$(".quantities").change(updateBookCountInCart);
-	$(".decrementCart").click(updateCart)
+	$(".resetCart").click(updateCart)
 });
 
 function updateBookCountInCart() {
@@ -20,5 +20,5 @@ function updateBookCountInCart() {
 	$("#totalCost").html(totalCost);
 }
 function updateCart() {
-	TimeInterval(2000,$('#cart-badge').html("${bookCartCount}")) 
+	$('#cart-badge').html(0) 
 	}

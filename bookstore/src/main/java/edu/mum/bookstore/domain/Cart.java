@@ -55,6 +55,16 @@ public class Cart implements Serializable {
 		return books;
 	}
 
+	public boolean isBookInCartByBookId(long bookId) {
+		if(books !=null)
+		for (int i = 0; i < books.size(); i++) {
+			if (books.get(i).getId() == bookId) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public List<Book> removeBookFromCartById(long bookId) {
 		if(books !=null)
 		for (int i = 0; i < books.size(); i++) {

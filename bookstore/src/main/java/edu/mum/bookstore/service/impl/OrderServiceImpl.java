@@ -41,4 +41,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderRepository.importOrderByOrderNumber(orderNumber);
 	}
 
+	@Override
+	public Order updateShippingDataOrder(String address, String zipcode, String phone, long id) {
+		orderRepository.updateShippingDataOrder(address, zipcode, phone, id);
+		return null;
+	}
+
 }

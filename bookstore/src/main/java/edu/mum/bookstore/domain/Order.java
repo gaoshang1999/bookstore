@@ -21,6 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity(name = "ORDERS")
 @Table(name = "ORDERS")
@@ -52,11 +55,11 @@ public class Order implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date time;
 
+	@NotEmpty(message="Please insert address")
 	private String address;
+	@Size(min = 5, max=6, message="Please Insert a Valid ZipCode")
 	private String zipcode;
 	private String phone;
-	
-	
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID", nullable = false)
@@ -132,6 +135,13 @@ public class Order implements Serializable {
 
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
+	}
+
+	public Order updateShippingDataOrder(Order order) {
+		this.address = order.getAddress();
+		this.zipcode = order.getZipcode();
+		this.phone = order.getPhone();
+		return this;
 	}
 
 }

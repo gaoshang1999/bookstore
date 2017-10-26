@@ -16,4 +16,6 @@ public interface OrderService {
 
 	public Order importOrderByOrderNumber(String orderNumber);
 
+	public Order updateShippingDataOrder(String address, String zipcode, String phone, long id);
+
 }
